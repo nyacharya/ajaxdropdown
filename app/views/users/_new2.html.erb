@@ -1,0 +1,4 @@
+<option> </option>
+<% @districts.each do |district| %>
+<option value="<%= district.id %>"><%= district.name.titleize %></option>
+<% end %>

@@ -1,0 +1,41 @@
+<%= form_for(user) do |f| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+ <div class="field">
+    <%= f.label :country_id %>
+    <%= f.select :country_id, Country.all.collect{|p| [p.name, p.id]}, include_blank: true , remote: true%>
+  </div>
+
+  <div class="field">
+    <%= f.label :state_id %>
+    <%= f.select :state_id, 'Select Country first' %>
+
+  <div class="field">
+    <%= f.label :district_id %>
+    <%= f.select :district_id, 'Select State First' %>
+  </div>
+
+  <div class="actions">
+    <%= f.button "Signup", class: "btn btn-success btn-lg btn-block", data: {disable_with: "<i class = 'fa fa-spinner fa-spin'></i> Signing up ..."} %>
+  </div>
+<% end %>
